@@ -54,7 +54,7 @@
                                 <label for="due_date" class="sr-only"></label>
 
                                 <!-- needs update/validation for Safari and IE browsers -->
-                                <input class="rounded" type="date" name="due_date" placeholder="mm/dd/yyyy">
+                                <input class="rounded" type="date" name="due_date" placeholder="yyyy-mm-dd">
                             </div>
 
                             <div>
