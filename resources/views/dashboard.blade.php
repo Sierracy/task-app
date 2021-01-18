@@ -26,7 +26,7 @@
                             </div>
 
                             <!-- Status Drop Down -->
-                            <div>
+                            <div class="inline-block mb-4">
                                 <label for="status" class="sr-only"></label>
                                 <select class="rounded" name='status'>
                                     <option selected disabled>Status</option>
@@ -34,10 +34,10 @@
                                     <option value="In Progress">In Progress</option>
                                     <option value="Complete">Complete</option>
                                 </select>
-                            </div>
+                            
 
                             <!-- Priority Dropdown -->
-                            <div>
+                            
                                 <label for="priority" class="sr-only"></label>
                                 <select class="rounded" name='priority'>
                                     <option selected disabled>Priority</option>
@@ -47,10 +47,10 @@
                                     <option value="Critical">Critical</option>
                                 
                                 </select>
-                            </div>
+                            
 
                             <!-- Due Date Picker -->
-                            <div>
+                            
                                 <label for="due_date" class="sr-only"></label>
 
                                 <!-- needs update/validation for Safari and IE browsers -->
