@@ -47,6 +47,12 @@
                     </a>
                 @endif
 
+                @if(Route::has('register'))
+                    <a class="underline text-sm ml-3 text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('New User?') }}
+                    </a>
+                @endif
+
                 <x-button class="ml-3">
                     {{ __('Login') }}
                 </x-button>
