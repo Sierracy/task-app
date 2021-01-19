@@ -18,10 +18,13 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [TaskController::class, 'create'])
+                ->middleware(['auth'])
+                ->name('dashboard');
 
 Route::post('/dashboard', [TaskController::class, 'store']);
 
+Route::delete('/dashboard/{task}', [TaskController::class, 'destroy'])
+    ->name('task.destroy');
+    
 require __DIR__.'/auth.php';

@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
+    public function create()
+    {
+        $tasks = Task::get();
+        
+        return view('dashboard', [
+            'tasks' => $tasks
+        ]);
+    }
+
     public function store(Request $request){
         //validate
 
@@ -28,5 +38,11 @@ class TaskController extends Controller
 
     }
 
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return back();
+    }
     
 }

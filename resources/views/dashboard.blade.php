@@ -49,6 +49,22 @@
                                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Create</button>                            
                             </div>
                         </form>
+
+                        @if ($tasks->count())
+                            @foreach($tasks as $task)
+                                <div class="whitespace-nowrap">
+                                    <span>{{ $task->assigned_to }}</span> <span>{{ $task->due_date }}</span> <span>{{$task->priority}}</span> <span>{{ $task->status }}</span> <span>{{ $task->description }}</span>  <span>Created: {{ $task->created_at }}</span>  <span>Updated: {{ $task->updated_at }}</span> 
+                                    <form action="{{ route('task.destroy', $task) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="underline font-small">Delete</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>There are no tasks.</p>
+                        @endif
+
                     </div>
                 </div>
             </div>
