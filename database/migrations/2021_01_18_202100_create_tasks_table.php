@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('description', 200);
             $table->string('assigned_to', 100);
             $table->date('due_date');
-            $table->enum('status', ['Pending', 'In Progress', 'Complete']);
+            $table->enum('status', ['Pending', 'In Progress', 'Complete'])->default('Pending');
             $table->enum('priority', ['Low', 'Medium', 'High', 'Critical']);
             $table->timestamps();
         });

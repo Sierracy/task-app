@@ -9,12 +9,16 @@ class TaskController extends Controller
     public function store(Request $request){
         //validate
 
-        //dd($request->user()->tasks);
+        $this->validate($request, [
+            'description' => 'required',
+            'assigned_to' => 'required',
+            'priority' => 'required',
+            'due_date' => 'required'
+        ]);        
 
         $request->user()->tasks()->create([
             'description' => $request->description,
             'priority' => $request->priority,
-            'status' => $request->status,
             'due_date' => $request->due_date,
             'assigned_to' => $request->assigned_to
             
