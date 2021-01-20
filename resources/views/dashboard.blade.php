@@ -54,7 +54,7 @@
                             @foreach($tasks as $task)
                                 <div>
                                     <span>Assigned: {{ $task->assigned_to }}</span>  <span>Description: {{ $task->description }}</span>   <span>Due: {{ $task->due_date }}</span>  <span>Priority: {{$task->priority}}</span>  <span>Status: {{ $task->status }}</span> <span>Created: {{ $task->created_at }}</span>  <span>Updated: {{ $task->updated_at }}</span> 
-                                    <form action="{{ route('task.destroy', $task) }}" method="post">
+                                    <form action="{{ route('task.destroy', $task->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="underline">Delete</button>

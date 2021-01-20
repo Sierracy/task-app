@@ -17,13 +17,12 @@ class TaskController extends Controller
     }
 
     public function store(Request $request){
-        //validate
 
         $this->validate($request, [
-            'description' => 'required',
-            'assigned_to' => 'required',
+            'description' => 'required|unique|max:200', //spit out 'task is assigned'
+            'assigned_to' => 'required|max:100',
             'priority' => 'required',
-            'due_date' => 'required'
+            'due_date' => 'required|date|after_or_equal:today'
         ]);        
 
         $request->user()->tasks()->create([
@@ -40,14 +39,20 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        $task->delete();
+        $trashTask = Task::find($task->id);
 
+        if($trashTask){
+            $task->delete();
+        }
+
+        else{
+            dd($task);
+        }
+  
         return back();
     }
 
     public function showEditForm(Task $task){
-
-        //dd($task->status);
 
         return view('edit', [
             'task' => $task
@@ -57,15 +62,12 @@ class TaskController extends Controller
 
     public function updateTask(Request $request){
         $this->validate($request, [
-            'description' => 'required',
-            'assigned_to' => 'required',
-            'due_date' => 'required'
+            'description' => 'required|unique|max:200',
+            'assigned_to' => 'required|max:100',
+            'due_date' => 'required|date|after_or_equal:today'
         ]);
 
         $task = Task::find($request->id);
-
-        //dd($request->id);
-
         $task->fill($request->all());
         $task->save();
 
