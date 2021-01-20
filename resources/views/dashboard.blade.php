@@ -51,18 +51,39 @@
                         </form>
 
                         @if ($tasks->count())
+                            <table>
+                                <tr>
+                                    <th>Assigned</th>
+                                    <th>Task</th>
+                                    <th>Due</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                
                             @foreach($tasks as $task)
-                                <div>
-                                    <span>Assigned: {{ $task->assigned_to }}</span>  <span>Description: {{ $task->description }}</span>   <span>Due: {{ $task->due_date }}</span>  <span>Priority: {{$task->priority}}</span>  <span>Status: {{ $task->status }}</span> <span>Created: {{ $task->created_at }}</span>  <span>Updated: {{ $task->updated_at }}</span> 
-                                    <form action="{{ route('task.destroy', $task->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="underline">Delete</button>
-                                    </form>
-
-                                    <a href="{{ route('edit', $task) }}" class="underline">Edit</a>
-                                </div>
+                                <tr>
+                                    <td>{{ $task->assigned_to }}</td>
+                                    <td>{{ $task->description }}</td>
+                                    <td>{{ $task->due_date }}</td>
+                                    <td>{{ $task->status }}</td>
+                                    <td>{{ $task->priority }}</td>
+                                    <td>{{ $task->created_at }}</td>
+                                    <td>{{ $task->updated_at }}</td>
+                                    <td>
+                                        <form action="{{ route('task.destroy', $task->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="underline">Delete</button>
+                                        </form>
+                                    </td>
+                                    <td><a href="{{ route('edit', $task) }}" class="underline">Edit</a></td>
+                                </tr>
                             @endforeach
+                            </table>
                         @else
                             <p>There are no tasks.</p>
                         @endif

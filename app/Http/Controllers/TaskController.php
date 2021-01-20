@@ -19,7 +19,9 @@ class TaskController extends Controller
     public function store(Request $request){
 
         $this->validate($request, [
-            'description' => 'required|unique:tasks|max:200', //spit out 'task is assigned'
+            //Users can assign the same task description to multiple team members
+            //A task is a duplicate when the same description/assigned_to pair exists in the database
+            'description' => 'required|unique:tasks,description,NULL,NULL,assigned_to,'.$request->assigned_to.'|max:200', //spit out 'task is assigned'
             'assigned_to' => 'required|max:100',
             'priority' => 'required',
             'due_date' => 'required|date|after_or_equal:today'
@@ -80,7 +82,7 @@ class TaskController extends Controller
             'assigned_to' => 'required|max:100',
 
             //if a new due date is submitted, it must be in date format and be >= today's date
-            'due_date' => 'exclude_if:due_date,'.$task->due_date.'required|date|after_or_equal:today'
+            'due_date' => 'exclude_if:due_date,'.$task->due_date.'|required|date|after_or_equal:today'
         ]);
 
         
