@@ -19,13 +19,15 @@ class TaskController extends Controller
     public function store(Request $request){
 
         $this->validate($request, [
-            'description' => 'required|unique|max:200', //spit out 'task is assigned'
+            'description' => 'required|unique:tasks|max:200', //spit out 'task is assigned'
             'assigned_to' => 'required|max:100',
             'priority' => 'required',
             'due_date' => 'required|date|after_or_equal:today'
         ]);        
 
         $request->user()->tasks()->create([
+
+            //status always defaults to pending on create
             'description' => $request->description,
             'priority' => $request->priority,
             'due_date' => $request->due_date,
@@ -39,6 +41,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
+        //TODOtryCatch find or fail
         $trashTask = Task::find($task->id);
 
         if($trashTask){
@@ -46,6 +49,7 @@ class TaskController extends Controller
         }
 
         else{
+            
             dd($task);
         }
   
@@ -61,13 +65,25 @@ class TaskController extends Controller
     }
 
     public function updateTask(Request $request){
+        
+        //TODO try catch find or fail
+        $task = Task::find($request->id);
+
         $this->validate($request, [
-            'description' => 'required|unique|max:200',
+
+            //required to prevent submission of empty string on update
+            //form automatically filled with old value     
+            'description' => 'required|unique:tasks,description,'.$request->id.'max:200',
+
+            //required to prevent submission of empty string on update
+            //form automatically filled with old value
             'assigned_to' => 'required|max:100',
-            'due_date' => 'required|date|after_or_equal:today'
+
+            //if a new due date is submitted, it must be in date format and be >= today's date
+            'due_date' => 'exclude_if:due_date,'.$task->due_date.'required|date|after_or_equal:today'
         ]);
 
-        $task = Task::find($request->id);
+        
         $task->fill($request->all());
         $task->save();
 
