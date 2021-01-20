@@ -27,4 +27,10 @@ Route::post('/dashboard', [TaskController::class, 'store']);
 Route::delete('/dashboard/{task}', [TaskController::class, 'destroy'])
     ->name('task.destroy');
     
+Route::get('/edit/{task}', [TaskController::class, 'showEditForm'])
+    ->name('edit');
+
+Route::post('/edit', [TaskController::class, 'updateTask'])
+    ->name('updateTask');
+
 require __DIR__.'/auth.php';
