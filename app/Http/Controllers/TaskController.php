@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function create()
     {
-        $tasks = Task::get();
+        $tasks = Task::paginate(4);
         
         return view('dashboard', [
             'tasks' => $tasks
