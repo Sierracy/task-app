@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function create()
     {
-        $tasks = Task::paginate(4);
+        $tasks = Task::orderBy('updated_at', 'DESC')->paginate(4);
         
         return view('dashboard', [
             'tasks' => $tasks
@@ -79,7 +79,7 @@ class TaskController extends Controller
 
             //required to prevent submission of empty string on update
             //form automatically filled with old value
-            'assigned_to' => 'required|max:100',
+            'assigned_to' => 'max:100',
 
             //if a new due date is submitted, it must be in date format and be >= today's date
             'due_date' => 'exclude_if:due_date,'.$task->due_date.'|required|date|after_or_equal:today'
