@@ -17,17 +17,13 @@
                             <!-- Task Name field -->
                             <div class="mb-4">
                                 <label for="description" class="sr-only">Description</label>
-                                <textarea name="description" id="description" cols="30" rows="1" 
-                                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Create a task!">
-                                </textarea>
+                                <textarea name="description" id="description" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Create a task!"></textarea>
                             </div>
 
                             <!-- Assigned To field. TODO upgrade to dropdown of users -->
                             <div class="mb-4">
                                 <label for="assigned_to" class="sr-only">Assigned To</label>
-                                <textarea name="assigned_to" id="assigned_to" cols="30" rows="1" 
-                                    class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Who is responsible?">
-                                </textarea>
+                                <textarea name="assigned_to" id="assigned_to" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Who is responsible?"></textarea>
                             </div>
                             
                             <!-- Priority Dropdown -->
