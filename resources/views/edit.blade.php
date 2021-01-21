@@ -20,13 +20,13 @@
                             <!-- Task Name field -->              
                             <div class="mb-4">
                                 <label for="description" class="sr-only">Description</label>
-                                <textarea name="description" id="description" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Description">{{$task->description}}</textarea>
+                                <textarea name="description" id="description" cols="30" rows="1" class="bg-gray-100 hover:bg-blue-100 border-2 w-full p-4 rounded-lg" placeholder="Description">{{$task->description}}</textarea>
                             </div>
 
                             <!-- Assigned To field. TODO upgrade to dropdown of users -->
                             <div class="mb-4">
                                 <label for="assigned_to" class="sr-only">Assigned To</label>
-                                <textarea name="assigned_to" id="assigned_to" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Who is responsible?">{{$task->assigned_to}}</textarea>
+                                <textarea name="assigned_to" disabled id="assigned_to" cols="30" rows="1" class="w-full p-4 border-none" placeholder="Who is responsible?">Assigned: {{$task->assigned_to}}</textarea>
                             </div>
                             
                             <div class="inline-block mb-4">
