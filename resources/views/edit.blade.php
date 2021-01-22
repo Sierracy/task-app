@@ -23,14 +23,14 @@
                                 <textarea name="description" id="description" cols="30" rows="1" class="bg-gray-100 hover:bg-blue-100 border-2 w-full p-4 rounded-lg" placeholder="Description">{{$task->description}}</textarea>
                             </div>
 
-                            <!-- Assigned To field. TODO upgrade to dropdown of users -->
+                            <!-- Assigned To field. Disabled for users. In new update admins will have change permissions-->
                             <div class="mb-4">
                                 <label for="assigned_to" class="sr-only">Assigned To</label>
                                 <textarea name="assigned_to" disabled id="assigned_to" cols="30" rows="1" class="w-full p-4 border-none" placeholder="Who is responsible?">Assigned: {{$task->assigned_to}}</textarea>
                             </div>
-                            
+
+                            <!-- Priority Dropdown Select-->                           
                             <div class="inline-block mb-4">
-                                <!-- Priority Dropdown -->
                                 <label for="priority" class="sr-only"></label>
                                 <select class="rounded" name='priority'>
                                     <option selected disabled>Current Priority: {{$task->priority}}</option>
@@ -41,7 +41,7 @@
                                 
                                 </select>
 
-                                <!--Status Dropdown-->
+                                <!--Status Dropdown Select-->
                                 <label for="status" class="sr-only"></label>
                                 <select class="rounded" name='status'>
                                     <option selected disabled>Current Status: {{$task->status}}</option>
@@ -52,8 +52,6 @@
                             
                                 <!-- Due Date Picker -->
                                 <label for="due_date" class="sr-only"></label>
-
-                                <!-- needs update/validation for Safari and IE browsers -->
                                 <input class="rounded" type="date" name="due_date" value="{{$task->due_date}}" placeholder="yyyy-mm-dd">
                             </div>
 

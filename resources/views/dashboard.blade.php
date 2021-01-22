@@ -10,7 +10,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
+
                         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
+
+                        <!-- Task Creation Form -->
                         <form action="{{ route('dashboard') }}" method="post">
                             @csrf 
 
@@ -20,7 +23,7 @@
                                 <textarea name="description" id="description" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Create a task!"></textarea>
                             </div>
 
-                            <!-- Assigned To field. TODO upgrade to dropdown of users -->
+                            <!-- Assigned To field -->
                             <div class="mb-4">
                                 <label for="assigned_to" class="sr-only">Assigned To</label>
                                 <textarea name="assigned_to" id="assigned_to" cols="30" rows="1" class="bg-gray-100 border-2 w-full p-4 rounded-lg" placeholder="Who is responsible?"></textarea>
@@ -39,8 +42,6 @@
                             
                                 <!-- Due Date Picker -->
                                 <label for="due_date" class="sr-only"></label>
-
-                                <!-- needs update/validation for Safari and IE browsers -->
                                 <input class="rounded" type="date" name="due_date" placeholder="yyyy-mm-dd">
                             </div>
 
@@ -49,6 +50,7 @@
                             </div>
                         </form>
 
+                        <!-- Display all tasks -->
                         <x-taskTable :tasks="$tasks"></x-taskTable>
 
                     </div>

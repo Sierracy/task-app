@@ -19,6 +19,7 @@
                     <th class="px-4 py-2"></th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($tasks as $task)
                     <tr class="border-b border-gray-200 py-10 text-sm">
@@ -51,7 +52,9 @@
                 @endforeach
             </tbody>
         </table>
+
         {{$tasks->links()}}
+
     </div>
 @else
     <p>There are no tasks.</p>
